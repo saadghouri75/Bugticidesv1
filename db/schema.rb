@@ -35,23 +35,23 @@ ActiveRecord::Schema.define(version: 20150405104538) do
     t.string   "postal_code"
     t.string   "city"
     t.string   "province"
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image"
     t.integer  "user_id"
-    t.string   "property_type"
-    t.string   "size"
-    t.decimal  "price_min",     precision: 6, scale: 2
-    t.decimal  "price_max",     precision: 6, scale: 2
-    t.integer  "age"
-    t.datetime "sold_at"
-    t.string   "status",                                default: "open"
-    t.boolean  "approved",                              default: false
-    t.boolean  "sold_flag",                             default: false
+    t.string   "status",        default: "open"
+    t.boolean  "approved",      default: false
+    t.boolean  "sold_flag",     default: false
     t.string   "facilities"
     t.string   "image2"
     t.string   "image3"
     t.string   "image4"
+    t.string   "property_type"
+    t.string   "size"
+    t.integer  "price_min"
+    t.integer  "price_max"
+    t.integer  "age"
+    t.datetime "sold_at"
   end
 
   create_table "property_bids", force: :cascade do |t|

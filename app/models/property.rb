@@ -14,4 +14,6 @@ class Property < ActiveRecord::Base
   	validates_presence_of :size
   	validates_presence_of :property_type
   	validates_presence_of :user_id
+    validates :price_min, :numericality => {:greater_than => 0, :less_than => 10000000}
+    validates :price_max, :numericality => {:greater_than => 0, :less_than => 10000000}
  end
