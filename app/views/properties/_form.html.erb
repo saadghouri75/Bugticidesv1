@@ -1,0 +1,78 @@
+<%= form_for @property, :html => {:multipart => true} do |f| %>
+  <% if @property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+      <% @property.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <span>Title</span>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <span>Description</span>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <span>Area</span>
+    <%= f.text_field :area %>
+  </div>
+
+  <div>
+    <span>Postal Code</span>
+    <%= f.text_field :postal_code %>
+  </div>
+
+  <div>
+    <span>City</span>
+    <%= f.text_field :city %>
+  </div>
+
+  <div>
+    <span>Province</span>
+    <%= f.text_field :province %>
+  </div>
+
+  <div>
+    <span>Type</span>
+    <%= f.text_field :property_type %>
+  </div>
+
+  <div>
+    <span>Size</span>
+    <%= f.text_field :size %>
+  </div>
+
+  <div>
+    <span>Min. Price</span>
+    <%= f.text_field :price_min %>
+  </div>
+
+  <div>
+    <span>Max. Price</span>
+    <%= f.text_field :price_max %>
+  </div>
+
+  <div>
+    <span>Age</span>
+    <%= f.text_field :age %>
+  </div>
+
+  <div>
+    <span>Image</span>
+    <%= f.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<br><br>

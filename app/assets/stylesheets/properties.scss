@@ -1,0 +1,24 @@
+// Place all the styles related to the properties controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.active_sort {
+  font-style: italic;
+  font-weight: bolder;
+}
+
+.hide-bullets {
+  list-style:none;
+  margin-left: -40px;
+  margin-top:20px;
+}
+
+.slider_image {
+  height: 300px !important;
+  width: 770px;
+}
+
+.slider_image_thumb {
+  height: 100px !important;
+  width: 170px;
+}

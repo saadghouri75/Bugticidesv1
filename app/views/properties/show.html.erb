@@ -1,0 +1,86 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<%#= link_to 'Edit', edit_property_path(@property) %> 
+<%#= link_to 'Back', properties_path %>
+
+
+<div class="services-top-grids">
+  <div class="container">
+    <div class="services-wel wel-head text-center">
+      <h3><span>P</span>roperty</h3>
+      <p>You are viewing <%= @property.title %></p>
+    </div>
+    <%= render :partial=> 'properties/slider' %>
+    <div class="service-grids">
+        <!-- <div class="col-md-4 service-grid">
+        </div> -->
+        <div class="col-md-4 service-grid">
+          <h3><%= @property.title %></h3>
+          <b>Description:</b><p><%= @property.description %></p>
+          <b>Area:</b><p><%= @property.area %></p>
+          <b>Postal Code:</b><p><%= @property.postal_code %></p>
+          <b>City:</b><p><%= @property.city %></p>
+          <b>Size:</b><p><%= @property.size %></p>
+          <b>Age:</b><p><%= @property.age %></p>
+          <b>Min. Price:</b><p><%= number_to_currency(@property.price_min) %></p>
+          <b>Max. Price:</b><p><%= number_to_currency(@property.price_max) %></p>
+          <legend><b>Bid Count:</b><p><%= @bid_count %></p></legend>
+          <b>Owner:</b><p><%= @property.user.email %></p>
+          <% if user_signed_in? %>
+	          <% if current_user.id == @property.user_id %>
+	          	<b>Status:</b><p><%= @property.status %></p>
+	          	<b>Approved:</b><p><%= @property.approved %></p>
+	          <% end %>
+	      <% end %>
+        <% if user_signed_in? %>
+          <% unless current_user.id == @property.user_id %>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              Make a Bid
+            </button>
+          <% else %>
+            <h4>Bids</h4>
+            <table class="table table-hover">
+            <tr>
+              <th>User</th>
+              <th>Bid</th>
+            </tr>
+            <% @bid.each do |b| %>
+              <tr>
+                <td><%= b.user.email %></td>
+                <td><%= b.bid%></td>
+              </tr>
+            <% end %>
+            </table>
+          <% end %>
+        <% end %>
+        </div>
+        </div>
+      <div class="clearfix"> </div>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Make a Bid</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag bid_properties_path, :method => 'post' do %>
+          <%= number_field_tag :bid, params[:bid], :placeholder => 'Enter your bid', :class => 'form-control' %>
+          <%= hidden_field_tag :user, current_user.id %>
+          <%= hidden_field_tag :property, @property.id %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Make Bid", :class => 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
