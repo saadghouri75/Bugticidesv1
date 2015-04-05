@@ -71,7 +71,7 @@
         </div>
         <div class="modal-body">
           <%= form_tag bid_properties_path, :method => 'post' do %>
-          <%= number_field_tag :bid, params[:bid], :placeholder => 'Enter your bid', :class => 'form-control' %>
+          <%= text_field_tag :bid, params[:bid], :placeholder => 'Enter your bid', :class => 'form-control' %>
           <%= hidden_field_tag :user, current_user.id %>
           <%= hidden_field_tag :property, @property.id %>
         </div>
