@@ -89,4 +89,5 @@ Rails.application.configure do
     :password             => 'bugticides12',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
+    config.action_mailer.perform_deliveries = true
 end
