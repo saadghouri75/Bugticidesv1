@@ -108,7 +108,7 @@ class PropertiesController < ApplicationController
     user = params[:user]
     PropertyBid.create(:bid => bid, :user_id => user, :property_id => property)
     @property = Property.find(property)
-    PropertyMailer.bid_informer(@property.user,bid).deliver
+    # PropertyMailer.bid_informer(@property.user,bid).deliver
     redirect_to property_path(property)
   end
 
