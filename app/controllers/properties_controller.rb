@@ -108,8 +108,15 @@ class PropertiesController < ApplicationController
     user = params[:user]
     PropertyBid.create(:bid => bid, :user_id => user, :property_id => property)
     @property = Property.find(property)
-    # PropertyMailer.bid_informer(@property.user,bid).deliver
+    PropertyMailer.bid_informer(@property.user,bid).deliver
     redirect_to property_path(property)
+  end
+
+  def book_appointment
+    message = params[:message]
+    availability = params[:availability]
+    PropertyMailer.book_appointment(current_user,availability,message).deliver
+    redirect_to home_user_dashboard_path
   end
 
   private

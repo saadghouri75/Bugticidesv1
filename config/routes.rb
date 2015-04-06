@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get 'search'
       get 'search_results'
       post 'bid'
+      post 'book_appointment'
     end
     member do
       post 'sold'

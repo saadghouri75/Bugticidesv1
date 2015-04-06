@@ -6,4 +6,12 @@ class PropertyMailer < ApplicationMailer
     @bid = bid
     mail(to: @user.email, subject: 'A bid has been made on your property.')
   end
+
+  def book_appointment(user, availability, message)
+  	@user = user
+  	@availability = availability
+  	@message = message
+  	mail(to: @user.email, subject: 'Request for an appointment')
+  end
+
 end

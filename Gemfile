@@ -48,3 +48,12 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'devise'
 gem 'carrierwave'
 gem 'activeadmin', github: 'activeadmin'
+group :development do
+  gem "rails-erd"
+end
+group :development, :test do
+    gem 'railroady'
+end
+gem "letter_opener", :group => :development
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
