@@ -6,13 +6,13 @@ class PropertiesController < ApplicationController
   def index
     order_params = params[:order]
     if order_params == 'date'
-      @properties = Property.where(:sold_flag => false)
+      @properties = Property.where(:sold_flag => false, :approved => false)
       @active = 'date'
     elsif order_params == 'price'
-      @properties = Property.where(:sold_flag => false).order(:price_max)
+      @properties = Property.where(:sold_flag => false, :approved => false).order(:price_max)
       @active = 'price'
     else
-      @properties = Property.where(:sold_flag => false)
+      @properties = Property.where(:sold_flag => false, :approved => false)
       @active = 'date'
     end
   end
@@ -22,6 +22,12 @@ class PropertiesController < ApplicationController
   def show
     @bid = PropertyBid.where(:property_id => @property.id)
     @bid_count = @bid.count
+    @user_bids = PropertyBid.where(:property_id => @property.id, :user_id => current_user.id, :active => true)
+    if @user_bids.count == 0
+      @can_bid = true
+    else
+      @can_bid = false
+    end
   end
 
   # GET /properties/new
@@ -91,7 +97,9 @@ class PropertiesController < ApplicationController
     min_price = params[:min_price]
     max_price = params[:max_price]
     age = params[:age]
-    @properties = Property.where('area LIKE ? OR postal_code LIKE ? OR city LIKE ? OR province LIKE ? OR property_type LIKE ? OR size LIKE ? OR price_min LIKE ? OR price_max LIKE ? OR age LIKE ?',area, postal_code, city, province, property_type, size, min_price, max_price, age)
+    facilities = params[:facilities]
+    facilities = facilities.join(", ")
+    @properties = Property.where('area LIKE ? OR postal_code LIKE ? OR city LIKE ? OR province LIKE ? OR property_type LIKE ? OR size LIKE ? OR price_min LIKE ? OR price_max LIKE ? OR age LIKE ? OR facilities LIKE ?',area, postal_code, city, province, property_type, size, min_price, max_price, age, '%#{facilities}%')
   end
   
   def sold

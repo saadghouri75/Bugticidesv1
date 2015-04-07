@@ -2,25 +2,27 @@
   <h2>Search Property</h2>
 
   	<%= form_tag search_results_properties_path, :method => 'get' do %>
-	    <div>
-	      <span>Area</span>
-	      <%= text_field_tag :area, params[:area] %>
-	    </div>
-	    <div>
+	    <!-- <div>
 	      <span>Postal Code</span>
-	      <%= text_field_tag :postal_code, params[:postal_code] %>
+	      <%#= text_field_tag :postal_code, params[:postal_code] %>
+	    </div> -->
+	    <div>
+	      <span>Province</span>
+	      <%= select_tag :province, options_for_select(Province.all.map {|m| m.name}), {prompt: 'Select province'} %>
 	    </div>
 	    <div>
 	      <span>City</span>
-	      <%= text_field_tag :city, params[:city] %>
+	      <p id='province_select_error'><i>Please select a province first</i></p>
+	      <span id='QC'><%= select_tag :city, options_for_select(City.where(:province => 'QC').map {|m| m.name}), {prompt: 'Select city'} %></span>
+	      <span id='ON'><%= select_tag :city, options_for_select(City.where(:province => 'ON').map {|m| m.name}), {prompt: 'Select city'} %></span>
 	    </div>
 	    <div>
-	      <span>Province</span>
-	      <%= text_field_tag :province, params[:province] %>
+	      <span>Area</span>
+	      <p id='city_select_error'><i>Please select a city first</i></p>
+	      <span id='montreal'><%= select_tag :area, options_for_select(Area.where(:city => 'Montreal').map {|m| m.name}), {prompt: 'Select area'} %></span>
 	    </div>
 	    <div>
 	      <span>Type</span>
-	      <%#= text_field_tag :prop_type, params[:prop_type] %>
 	      <%= select_tag :property_type, options_for_select([ "Residential", "Condo", "Commercial" ]) %>
 	    </div>
 	    <div>
@@ -39,8 +41,66 @@
 	      <span>Age</span>
 	      <%= text_field_tag :age, params[:age] %>
 	    </div>
+	    <div>
+	      <span>Facilities</span>
+	      <%= check_box_tag 'facilities[]', 'hospital' %> Hospital <br>
+	      <%= check_box_tag 'facilities[]', 'shopping malls' %> Shopping Malls <br>
+	      <%= check_box_tag 'facilities[]', 'schools' %> Schools <br>
+	      <%= check_box_tag 'facilities[]', 'public transport' %> Public Transport <br>
+	      <%= check_box_tag 'facilities[]', 'parks' %> Parks <br>
+	      <%= check_box_tag 'facilities[]', 'other' %> Other
+	    </div>
 	    <%= submit_tag "Search", :name => nil %>
 	<% end %>
   <br>
   <br>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$("#QC").hide();
+	  	$("#ON").hide();
+	  	$("#montreal").hide();
+	  	$("#province_select_error").show();
+	  	$("#city_select_error").show();
+
+		$('#province').on('change', function() {
+		  var province = this.value;
+		  if(province == 'Ontario')
+		  {
+		  	$("#QC").hide();
+		  	$("#ON").show();
+		  	$("#province_select_error").hide();
+		  }
+		  else if(province == 'Quebec')
+		  {
+		  	$("#QC").show();
+		  	$("#ON").hide();
+		  	$("#province_select_error").hide();
+		  }
+		  else
+		  {
+		  	$("#QC").hide();
+		  	$("#ON").hide();
+		  	$("#province_select_error").show();
+		  }
+		});
+
+		$('#city').on('change', function() {
+		  var city = this.value;
+		  if(city == 'Montreal')
+		  {
+		  	$("#montreal").show();
+		  	$("#city_select_error").hide();
+		  }
+		  else
+		  {
+		  	$("#montreal").hide();
+		  	$("#city_select_error").show();
+		  	$("#city_select_error").html();
+		  	$("#city_select_error").html('<i>No areas found for this city</i>')
+		  }
+		});
+
+	});
+</script>

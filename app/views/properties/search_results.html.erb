@@ -4,10 +4,10 @@
       <h3><span>P</span>roperties</h3>
       <p>Below is the result of your search</p>
     </div>
-    <% if @properties == nil %>
-      
-    <% else %>
-      <div class="service-grids">
+    <div class="service-grids">
+      <% unless @properties.any? %>
+        Sorry there are no properties that match your search criteria
+      <% else %>
         <% @properties.each do |property| %>
           <div class="col-md-4 service-grid">
             <%= image_tag property.image %>
@@ -16,8 +16,8 @@
             <%= link_to 'View', property, :class => 'viewmore-s' %>
           </div>
         <% end %>
-        <div class="clearfix"> </div>
-      </div>
-    <% end %>
+      <% end %>
+      <div class="clearfix"> </div>
+    </div>
   </div>
 </div>

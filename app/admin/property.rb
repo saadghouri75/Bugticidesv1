@@ -51,10 +51,11 @@ ActiveAdmin.register Property do
     inputs 'Property' do
       input :title
       input :description
-      input :area
+      input :province, as: :select, :collection => Province.all.map{|m| [m.name, m.name]}
+      input :city, as: :select, :collection => City.where(:province => 'QC').map{|m| [m.name, m.name]}, :wrapper_html => {:id => 'QC'}
+      input :city, as: :select, :collection => City.where(:province => 'ON').map{|m| [m.name, m.name]}, :wrapper_html => {:id => 'ON'}
+      input :area, as: :select, :collection => Area.where(:city => 'Montreal').map{|m| [m.name, m.name]}, :wrapper_html => {:id => 'montreal'}
       input :postal_code
-      input :city
-      input :province
       input :image
       input :image2
       input :image3

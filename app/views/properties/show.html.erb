@@ -33,25 +33,27 @@
 	          <% end %>
 	      <% end %>
         <% if user_signed_in? %>
-          <% unless current_user.id == @property.user_id %>
+          <% if @can_bid && @property.status == 'open' %>
+          <%# unless current_user.id == @property.user_id %>
             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
               Make a Bid
             </button>
-          <% else %>
-            <h4>Bids</h4>
+          <% end %>
+          <%# else %>
+            <!-- <h4>Bids</h4>
             <table class="table table-hover">
             <tr>
               <th>User</th>
               <th>Bid</th>
-            </tr>
-            <% @bid.each do |b| %>
-              <tr>
-                <td><%= b.user.email %></td>
-                <td><%= b.bid%></td>
-              </tr>
-            <% end %>
-            </table>
-          <% end %>
+            </tr> -->
+            <%# @bid.each do |b| %>
+              <!-- <tr>
+                <td><%#= b.user.email %></td>
+                <td><%#= b.bid%></td>
+              </tr> -->
+            <%# end %>
+            <!-- </table> -->
+          <%# end %>
         <% end %>
         </div>
         </div>

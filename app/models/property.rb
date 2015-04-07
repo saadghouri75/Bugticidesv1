@@ -9,7 +9,7 @@ class Property < ActiveRecord::Base
   	validates_presence_of :title
   	validates_presence_of :description
   	validates_presence_of :area
-  	validates_presence_of :city
+  	# validates_presence_of :city
   	validates_presence_of :image
   	validates_presence_of :size
   	validates_presence_of :property_type
