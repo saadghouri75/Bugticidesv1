@@ -11,7 +11,7 @@ class PropertyMailer < ApplicationMailer
   	@user = user
   	@availability = availability
   	@message = message
-  	mail(to: @user.email, subject: 'Request for an appointment')
+  	mail(to: 'saad_ghouri75@yahoo.com', subject: 'Request for an appointment')
   end
 
 end

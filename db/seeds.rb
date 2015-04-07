@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(:username => 'admin', :email => 'admin@bugticide.com', :password => 'admin123', :password_confirmation => 'admin123', :role => 'admin')
+User.create(:username => 'admin', :email => 'saad_ghouri75@yahoo.com', :password => 'admin123', :password_confirmation => 'admin123', :role => 'admin')
 
 Province.create(:name => 'Ontario')
 Province.create(:name => 'Quebec')
