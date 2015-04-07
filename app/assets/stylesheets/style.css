@@ -322,6 +322,7 @@ a.news-btn:hover{
 	text-transform: uppercase;
 	margin: 0 0 1em 0;
 	font-weight: 900;
+	min-height: 79px;
 }
 .address,.latest-post{
 	font-family: 'Open Sans', sans-serif;

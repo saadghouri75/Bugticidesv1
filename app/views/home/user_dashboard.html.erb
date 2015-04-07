@@ -1,36 +1,43 @@
-User Dashboard
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Book an appointment
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Book an appointment</h4>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-sm-6">
+      <div class="card hovercard">
+          <div class="cardheader">
+          </div>
+          <div class="avatar">
+              <img alt="" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png">
+          </div>
+          <div class="info">
+              <div class="title">
+                  <a href="#"><%= current_user.username %></a>
+              </div>
+              <div class="desc"><%= current_user.email %></div>
+              <div class="desc"><%= link_to "Account Settings", edit_user_registration_path %></div>
+              <div class="desc"><b><%= link_to "Logout", destroy_user_session_path, :method => :delete %></b></div>
+          </div>
       </div>
-      <div class="modal-body">
+    </div>
+    <div class='col-lg-offset-2 col-lg-7 col-sm-6'>
+        <br>
+        <div class="form-login">
+        <h4>Book an appointment</h4>
         <%= form_tag book_appointment_properties_path, :method => 'post' do %>
           Please select your availability:
           <div class='input-group date' id='datetimepicker1'>
             <!-- <input type='text' class="form-control" /> -->
-            <%= text_field_tag :availability, params[:availability], :placeholder => 'Select your availability', :class => 'form-control' %>
+            <%= text_field_tag :availability, params[:availability], :placeholder => 'Select your availability', :class => 'form-control input-sm chat-input' %>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
           </div>
           Message:
-          <%= text_area_tag :message, params[:message], :placeholder => 'Enter your message', :class => 'form-control' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= submit_tag "Submit", :class => 'btn btn-primary' %>
+          <%= text_area_tag :message, params[:message], :placeholder => 'Enter your message', :class => 'form-control input-sm chat-input' %>
+          <br>
+          <%= submit_tag "Submit", :class => 'btn btn-primary' %>
         <% end %>
-      </div>
+        </span>
+        </div>
     </div>
   </div>
 </div>

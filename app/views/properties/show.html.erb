@@ -31,58 +31,22 @@
 	          	<b>Status:</b><p><%= @property.status %></p>
 	          	<b>Approved:</b><p><%= @property.approved %></p>
 	          <% end %>
-	      <% end %>
-        <% if user_signed_in? %>
-          <% if @can_bid && @property.status == 'open' %>
-          <%# unless current_user.id == @property.user_id %>
-            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-              Make a Bid
-            </button>
+	        <% end %>
+          <br>
+          <% if user_signed_in? %>
+            <% if @can_bid && @property.status == 'open' %>
+              <%= form_tag bid_properties_path, :method => 'post' do %>
+                <%= text_field_tag :bid, params[:bid], :placeholder => 'Enter your bid', :class => 'form-control', :required => true %>
+                <%= hidden_field_tag :user, current_user.id %>
+                <%= hidden_field_tag :property, @property.id %>
+                <br>
+                <%= submit_tag "Make Bid", :class => 'btn btn-primary' %>
+              <% end %>
+            <% end %>
           <% end %>
-          <%# else %>
-            <!-- <h4>Bids</h4>
-            <table class="table table-hover">
-            <tr>
-              <th>User</th>
-              <th>Bid</th>
-            </tr> -->
-            <%# @bid.each do |b| %>
-              <!-- <tr>
-                <td><%#= b.user.email %></td>
-                <td><%#= b.bid%></td>
-              </tr> -->
-            <%# end %>
-            <!-- </table> -->
-          <%# end %>
-        <% end %>
         </div>
         </div>
       <div class="clearfix"> </div>
     </div>
   </div>
 </div>
-
-<% if user_signed_in? %>
-<!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Make a Bid</h4>
-        </div>
-        <div class="modal-body">
-          <%= form_tag bid_properties_path, :method => 'post' do %>
-          <%= text_field_tag :bid, params[:bid], :placeholder => 'Enter your bid', :class => 'form-control' %>
-          <%= hidden_field_tag :user, current_user.id %>
-          <%= hidden_field_tag :property, @property.id %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= submit_tag "Make Bid", :class => 'btn btn-primary' %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
