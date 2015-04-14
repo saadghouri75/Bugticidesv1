@@ -3,7 +3,7 @@ class CreatePropertiesBid < ActiveRecord::Migration
     create_table :property_bids do |t|
     	t.integer :property_id
     	t.integer :user_id
-    	t.decimal :bid, :precision => 6, :scale => 2
+    	t.integer :bid
     	t.timestamps
     end
   end
