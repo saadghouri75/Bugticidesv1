@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!, :only => [:user_dashboard]
   def index
   	if user_signed_in?
   		if current_user.role == 'user'

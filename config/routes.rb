@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
+  
   resources :properties do
     collection do
       get 'my_properties'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'home/user_dashboard'
   get 'home/contact'
   root 'home#index'
+  ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
