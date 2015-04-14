@@ -8,7 +8,7 @@ class Property < ActiveRecord::Base
   	has_many :users, through: :property_bids
   	validates_presence_of :title
   	validates_presence_of :description
-  	validates_presence_of :area
+  	# validates_presence_of :area
   	# validates_presence_of :city
   	validates_presence_of :image
   	validates_presence_of :size
