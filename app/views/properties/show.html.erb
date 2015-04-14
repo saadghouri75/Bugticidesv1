@@ -33,7 +33,7 @@
 	          <% end %>
 	        <% end %>
           <br>
-          <% if user_signed_in? and current_user.id == !@property.user_id %>
+          <% if user_signed_in? and current_user.id != @property.user_id %>
             <% if @can_bid && @property.status == 'open' %>
               <%= form_tag bid_properties_path, :method => 'post' do %>
                 <%= text_field_tag :bid, params[:bid], :placeholder => 'Enter your bid', :class => 'form-control', :required => true %>
