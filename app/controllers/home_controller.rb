@@ -19,4 +19,10 @@ class HomeController < ApplicationController
 
   def contact
   end
+
+  def force_logout
+    sign_out current_user
+    redirect_to :root
+  end
+
 end

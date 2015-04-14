@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/user_dashboard'
   get 'home/contact'
+  get 'home/force_logout'
   root 'home#index'
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.

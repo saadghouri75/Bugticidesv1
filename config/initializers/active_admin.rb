@@ -54,7 +54,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  # config.authentication_method = :authenticate_admin_user!
+  config.authentication_method = :authenticate_user!
 
   # == User Authorization
   #
@@ -234,7 +234,7 @@ ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
       # menu.add :label => 'Custom Menu' do |submenu|
-        menu.add :label => 'Logout', :url => :destroy_user_session_path, priority: 100
+        menu.add :label => 'Logout', :url => :home_force_logout_path, priority: 100
       # end
     end
   end
