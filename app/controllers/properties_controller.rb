@@ -6,13 +6,13 @@ class PropertiesController < ApplicationController
   def index
     order_params = params[:order]
     if order_params == 'date'
-      @properties = Property.where(:sold_flag => false, :approved => false)
+      @properties = Property.where(:sold_flag => false, :approved => true)
       @active = 'date'
     elsif order_params == 'price'
-      @properties = Property.where(:sold_flag => false, :approved => false).order(:price_max)
+      @properties = Property.where(:sold_flag => false, :approved => true).order(:price_max)
       @active = 'price'
     else
-      @properties = Property.where(:sold_flag => false, :approved => false)
+      @properties = Property.where(:sold_flag => false, :approved => true)
       @active = 'date'
     end
   end
