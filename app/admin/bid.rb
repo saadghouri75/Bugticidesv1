@@ -1,5 +1,5 @@
 ActiveAdmin.register PropertyBid do
-  permit_params :active
+  permit_params :active, :user_id, :property_id, :bid
   scope("Active") { |bid| bid.where(active: true) }
   scope("Inactive(3 days earlier)") { |bid| bid.where(active: false) }
 
